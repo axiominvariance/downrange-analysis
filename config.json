@@ -1,0 +1,38 @@
+{
+  "simulation": {
+    "launch_angle_deg": 85.0,
+    "wind_speed_nominal": 0.0,
+    "max_simulation_time": 1200
+  },
+  "environment": {
+    "g": 9.81,
+    "rho": 1.225
+  },
+  "stage1": {
+    "m_total": 800.0,
+    "m_propellant": 500.0,
+    "thrust": 15000.0,
+    "burn_time": 60.0,
+    "Cd": 0.3,
+    "A": 0.5
+  },
+  "stage2": {
+    "m_total": 250.0,
+    "m_propellant": 150.0,
+    "thrust": 5000.0,
+    "burn_time": 80.0,
+    "Cd": 0.25,
+    "A": 0.3
+  },
+  "monte_carlo": {
+    "n_samples": 10000,
+    "seed": 42,
+    "uncertainties": {
+      "thrust_stage1_percent": 3.0,
+      "thrust_stage2_percent": 3.0,
+      "mass_stage1_percent": 1.0,
+      "wind_speed_std": 5.0,
+      "launch_angle_std_deg": 0.5
+    }
+  }
+}
