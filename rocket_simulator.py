@@ -78,19 +78,7 @@ class RocketSimulator:
         t_start: float,
         wind_speed: float,
     ) -> list:
-        """
-        Equations of motion for powered flight.
         
-        Args:
-            t: Current time (s)
-            state: State vector [x, vx, y, vy]
-            stage: Stage parameters
-            t_start: Stage ignition time (s)
-            wind_speed: Horizontal wind speed (m/s)
-        
-        Returns:
-            State derivatives [dx/dt, dvx/dt, dy/dt, dvy/dt]
-        """
         x, vx, y, vy = state
         
         # Mass at current time
@@ -283,7 +271,8 @@ class RocketSimulator:
             uncertainties = {
                 "thrust_stage1_percent": 3.0,
                 "thrust_stage2_percent": 3.0,
-                "mass_stage1_percent": 1.0,
+                "mass_stage1_percent": 5.0,
+                "mass_stage2_percent": 5.0,
                 "wind_speed_std": 5.0,
                 "launch_angle_std_deg": 0.5,
             }
