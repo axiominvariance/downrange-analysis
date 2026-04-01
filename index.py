@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 from rocket_simulator import RocketSimulator, StageParameters
 
 
-# ============================================================
-# CONFIGURATION LOADING
-# ============================================================
+# Configuration
 
 def load_config(config_file: str = "config.json") -> dict:
     """Load simulation configuration from JSON file."""
@@ -29,7 +27,7 @@ def plot_single_trajectory(simulator: RocketSimulator, wind_speed: float = 0.0):
     fig, ax = plt.subplots(figsize=(12, 6), facecolor="black")
     ax.set_facecolor("black")
     
-    # Combine all trajectory segments and filter y >= 0 (only above ground)
+    # All trajectory segments 
     x_all = np.concatenate([
         traj["stage1_burn"]["x"],
         traj["stage2_burn"]["x"],
@@ -81,7 +79,7 @@ def plot_monte_carlo(payload_impacts: np.ndarray, stage1_impacts: np.ndarray):
     """Plot Monte Carlo results: scatter, histogram, statistics."""
     fig, axes = plt.subplots(1, 3, figsize=(18, 5), facecolor="black")
     
-    # --- Plot 1: Impact scatter ---
+    # Plot 1
     ax1 = axes[0]
     ax1.set_facecolor("black")
     valid_p = payload_impacts[~np.isnan(payload_impacts)]
@@ -96,7 +94,7 @@ def plot_monte_carlo(payload_impacts: np.ndarray, stage1_impacts: np.ndarray):
     ax1.tick_params(colors="white")
     ax1.legend(facecolor="black", edgecolor="white", labelcolor="white", fontsize=9)
     
-    # --- Plot 2: Payload histogram ---
+    # Plot 2: Payload histogram
     ax2 = axes[1]
     ax2.set_facecolor("black")
     ax2.hist(valid_p / 1000, bins=80, color="cyan", alpha=0.7, edgecolor="none")
@@ -115,7 +113,7 @@ def plot_monte_carlo(payload_impacts: np.ndarray, stage1_impacts: np.ndarray):
     ax2.tick_params(colors="white")
     ax2.legend(facecolor="black", edgecolor="white", labelcolor="white", fontsize=9)
     
-    # --- Plot 3: Stage 1 debris histogram ---
+    # Plot 3: Stage 1 debris histogram
     ax3 = axes[2]
     ax3.set_facecolor("black")
     ax3.hist(valid_s / 1000, bins=80, color="red", alpha=0.7, edgecolor="none")
@@ -139,7 +137,7 @@ def plot_monte_carlo(payload_impacts: np.ndarray, stage1_impacts: np.ndarray):
     print("Saved: monte_carlo_results.png")
     plt.show()
     
-    # --- Print statistics ---
+    # Print statistics
     print("\n" + "=" * 60)
     print("MONTE CARLO FLIGHT SAFETY ANALYSIS".center(60))
     print("=" * 60)
@@ -169,9 +167,8 @@ def plot_monte_carlo(payload_impacts: np.ndarray, stage1_impacts: np.ndarray):
     print("\n" + "=" * 60)
 
 
-# ============================================================
-# MAIN
-# ============================================================
+
+# Main
 
 if __name__ == "__main__":
     print("=" * 60)
